@@ -47,10 +47,11 @@ footer {
 }
 
 .call-to-action {
-  border: 0.1rem solid var(--THEME_HOVER);
-  padding: 0.5rem 1.2rem;
-  border-radius: 0.5rem;
+  border: 0.1rem solid currentColor;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
   text-decoration: none;
+  font-size: 0.75rem;
 }
 
 .site-signature {
