@@ -10,8 +10,22 @@
   margin-left: 0.5rem;
 }
 
+.l-navigation > * + *::before {
+  content: "/";
+  margin-right: 0.5rem;
+  opacity: 0.4;
+}
+
 .l-navigation a {
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--THEME_UNDERLINE);
+  font-size: 0.9rem;
+}
+
+@media (min-width: 800px) {
+  .l-navigation a {
+    font-size: 0.75rem;
+  }
 }
 
 .l-navigation a:hover {
