@@ -11,5 +11,5 @@ socialImage: ""
 </p>
 
 <p class="l-second">
-  Written by Marcelo
+  Marcelo Arias
 </p>
