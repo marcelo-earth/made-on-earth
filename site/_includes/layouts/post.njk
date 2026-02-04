@@ -1,6 +1,6 @@
 {% extends 'layouts/base.njk' %}
 
-{% set authorName = author if author else 
+{% set authorName = author if author else
   site.authorName %}
 {% set introSummary %}
 <div class="l-stack">
@@ -15,6 +15,32 @@
   </p>
 </div>
 {% endset %}
+
+{% block head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ title }}",
+  "description": "{{ description }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ authorName }}",
+    "url": "https://marceloarias.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.name }}",
+    "url": "{{ site.url }}"
+  },
+  "datePublished": "{{ date | w3DateFilter }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ site.url }}{{ page.url }}"
+  }
+}
+</script>
+{% endblock %}
 
 {% block content %}
   <div class="l-stack">
