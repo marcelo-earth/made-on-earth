@@ -12,7 +12,7 @@ $text: hsl(300, $saturation, 25%);
 $background: hsl(0, 0%, 27%);
 $dull: hsl(300, $saturation, 30%);
 
-$highlight-1: hsl(217, $saturation, 45%);
+$highlight-1: hsl(0, 0%, 45%);
 $highlight-2: hsl(39, $saturation, 30%);
 $highlight-3: hsl(0, $saturation, 42%);
 $highlight-4: hsl(277, $saturation, 5%);
@@ -99,7 +99,14 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  background: $background;
+  background: #FBFBFB;
+}
+
+@media (prefers-color-scheme: dark) {
+  :not(pre) > code[class*="language-"],
+  pre[class*="language-"] {
+    background: $background;
+  }
 }
 
 /* Inline code */
