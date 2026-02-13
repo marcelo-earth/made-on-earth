@@ -1,7 +1,7 @@
 ---
 title: Advibesor
 date: "2026-01-25"
-description: "Creating an iOS app that helps people master AI through short learning sessions and a news feed"
+description: "Creating an app that helps people write better prompts to create more things"
 tags:
   - ios
   - swiftui
