@@ -14,17 +14,17 @@ tags:
 
 ## Introduction
 
-Happy February 14th!
+Happy Valentine's Day! ❤️
 
-This is the simplest thing I've been in a couple of years building. So there are many things to explain about it.
+There are many different things to explain about lovetext. I think being appreciated by your friends, family, and loved ones is a very powerful thing, and I want to create a space where people can feel that way anonymously.
 
-A social network is one of the easiest pieces of software to build, because the technology is not complex at all, but the only thing that is hard for those things to be successful is the distribution problem. Which I'm fascinated by. Because it forces you to be in a [decision dilemma](https://substack.com/home/post/p-187351524), whether you want to create a positive impact and at the same time, make people stay engaged in your app.
+A social website is one of the easiest pieces of software to build, because the technology is not complex at all, but the only thing that is hard for those things to be successful is the distribution problem. Which I'm fascinated by. Because it forces you to be in a [decision dilemma](https://substack.com/home/post/p-187351524), whether you want to create a positive impact and at the same time, make people stay engaged in your website.
 
-Over the last few years, I’ve been much more focused on tools and developing solutions. I wrote that I wanted to come back. I have a few hypotheses in mind that I want to test. I’m a huge believer in the power of experimentation at this stage and the belief that I'm wrong most of the times, yet only showing up is the way to learn.
+Over the last few years, I’ve been much more focused on tools and developing solutions. I wrote that I wanted to come back. I have a few hypotheses in mind that I want to test. I’m a huge believer in the power of experimentation at this stage and the belief that **I'm wrong most of the times**, yet only showing up is the way to learn.
 
-If you build a better LLM, a better agent, or a better tool, those are more procedural and logical problems to solve, unlike solving distribution, which requires you to design something people _might_ like, and testing it with real users, which is something even the most powerful teams in the world struggle with. I’m not someone who knows more than them, plus I haven’t been active in this field, and this is my first time in many years building something like this. That’s why also lovetext is special to me.
+If you build a better LLM, a better agent, or a better tool, those are more procedural and logical problems to solve, unlike solving distribution, which requires you to design something people _might_ like, and testing it with real users, which is something even the most powerful teams in the world struggle with. I’m not someone who knows more than them, plus I haven’t been active in this field, and this is my first time in many years building something like this. That’s why lovetext is special to me.
 
-My hypothesis is based on the feeling of being appreciated by your friends, family, and loved ones, which is something very powerful and can have a positive impact on your life. Anonymity creates a space where people feel less pressure to say something nice about others (no one is watching you). If you create a system where people can choose who to compliment, without any reward (other than the person possibly seeing it again one day), and there you have it: The odds of happiness are high. The odds of popularity are incredibly low, which is normal. Since this is my first step into building social apps and websites, I hope you like it.
+My hypothesis is based on the feeling of being appreciated by your friends, family, and loved ones, which is something very powerful and can have a positive impact on your life. Anonymity creates a space where people feel less pressure to say something nice about others (no one is watching you). If you create a system where people can choose who to compliment, without any reward (other than the person possibly seeing it again one day), and there you have it. Since this is my first step into building social apps and websites, I hope you like it.
 
 introducing **lovetext**.
 
