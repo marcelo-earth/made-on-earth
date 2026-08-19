@@ -1,12 +1,12 @@
 ---
 title: Animo
-date: "2025-10-21"
-description: "Creating a Cursor extension that helps teachers, students and creators to make videos"
+date: "2026-08-18"
+description: "Rebuilding Animo as a native desktop app that renders educational videos with AI and Manim"
 tags:
   - motion graphics
-  - web
+  - desktop
   - manim
-  - server
+  - rust
 ---
 
 <img src="/animo__cover.webp" alt="Landing page of Animo" />
@@ -15,113 +15,44 @@ tags:
 
 With much love ❤️ to all of you.
 
-One of the main challenges for a video editor that also functions as a code editor is that it requires a lot of work to reach the standards of modern editors. On top of that, I listened to creators who wanted to stay on their favorite editor instead of switching to a new one—whether for familiarity, productivity, or other reasons.
+The code-editor extension version of Animo taught me a lot, but it also showed me its ceiling. I was fighting someone else's chat panel, fighting MCP adoption, fighting the fact that a "video editor inside a code editor" is a strange sentence to explain to a teacher who has never opened a terminal.
 
-So, it's time for the last part!
-
-Let’s focus on creating a new Animo, a more powerful, easy-to-use, and affordable tool that works inside your favorite editor, even if we have to rethink everything from scratch. When something has been on your mind for a long time, it means it’s time to make it real.
+So I rebuilt Animo again, this time as its own native desktop app: `animo-video`, a Tauri v2 + React + Rust application. No extension host, no marketplace approval process, no editor to piggyback on. Just Animo, on your machine, doing one thing, and doing it as lean as I could make it.
 
 ### What is Animo?
 
-Animo is a VSCode-family extension that allows your AI editor to generate animations from text. 
+Animo is a desktop app that lets educators create animated educational videos with AI. You describe what you want in chat, an AI orchestrator running as a subprocess writes a Manim scene, and Manim renders it locally on your machine. You bring your own API key, and the video is yours, rendered on your hardware.
 
-### History
+### Going native
 
-It’s May 2025, fall is starting, and I began working on the AGI project, short for Artificial Graphical Intelligence.
+`animo-video` is a ground-up rewrite of the desktop app, not an incremental update, and most of that rewrite was chasing efficiency. It compiles down to a native binary now, using Tauri's own WebView instead of bundling a browser runtime: about 8MB on disk, startup that feels instant, and roughly 50 to 80MB of RAM at rest. WKWebView on macOS and WebView2 on Windows do the actual rendering, which also means the app looks and feels native to each OS instead of like a browser tab wearing a window frame. Every one of those numbers used to be an order of magnitude worse.
 
-Before that, I had to learn how to develop VSCode extensions. After that small break, I finally got back to it. My first idea was not to use MCP but to modify the code editor’s chat panel deeply.
+The React frontend moved over largely intact: components, styles, most hooks all carried across close to as is. What changed underneath is everything that used to be message calls into a JavaScript backend process are now `invoke()` calls into Rust commands, and every service that used to run in that backend (chat storage, license checks, the Manim renderer, the AI orchestrator) now lives in `src-tauri/`, compiled and considerably faster for it.
 
-During the month of May, I made some progress, but VSCode’s limitations were bigger than expected, so I had to rethink everything again.
+## Watching the render happen
 
-### Trying MCP
+One detail I'm proud of: while Manim renders, you see frames appear in real time instead of staring at a spinner.
 
-Eventually, I decided to try using MCP even though its usage was still low. I wanted a simple and fast way to use MCP without making the user install a lot of things manually.
+The trick is understanding how Manim actually works. It doesn't render one file straight through. It renders each animation call as its own clip into a `partial_movie_files/` directory, then concatenates everything at the end. We used to skip that directory entirely when looking for the final MP4. Now a Rust file watcher sits on it, and the moment a new partial clip lands, it pulls the last frame out through an `ffmpeg` pipe straight from stdout, no temp file, no disk round trip, encodes it as base64 JPEG, and emits it to the frontend as a Tauri event. React updates an `<img>` tag. The whole loop is built to add as close to zero overhead to the actual render as possible, so watching your video build itself, animation by animation, never comes at the cost of the render finishing slower.
 
-I could have asked users to install everything: Python, MCP, Manim, FFMPEG, integrations, API key setup, and viewer. But the software needed to be plug and play.
+## A CLI, closed source on purpose
 
-So I came up with this strategy:
-	•	Everything is moved into an extension.
-	•	The user installs and activates MCP.
-	•	A copy of the server is created locally.
-	•	A button installs everything needed while the user logs in.
-	•	That same button authenticates the user and detects where the extension is used.
-	•	Finally, it installs the context in the right folder!
+Some users wanted to drive Animo from a terminal: list chats, kick off a generation, script a batch of renders. That's a fair ask, but it came with a constraint I couldn't relax: the CLI is part of a paid, licensed product, and it cannot ship as readable JavaScript or Python. `pkg`, `bun build --compile`, Node SEA: all of them still embed recoverable source. The only artifact where "closed" is a property of the file itself, not a hope, is a compiled binary.
 
-At the end, there is one last button that confirms everything is ready. You press it and can start by typing something like:
+So `animo` is a Rust binary living in the same Cargo workspace as the app, sharing a core crate (`animo-core`) that has zero dependency on Tauri, which keeps the binary lean, around 2MB, instead of dragging in an entire webview stack it will never render. It's signed and notarized as a nested executable inside `Animo.app`, and it's invisible until a user opts in from Settings.
 
-> “Create a red circle for me.”
+The harder problem wasn't packaging, it was ownership. The app assumes it's the only thing writing to chat files and settings; a CLI running alongside it breaks that assumption instantly. If the GUI has a chat open in memory and the CLI appends a message to the file on disk, the next time the GUI autosaves, it overwrites the CLI's work with a stale in-memory copy. So the CLI follows a single-writer rule: if the GUI is running, the CLI talks to it over a local, token-authenticated HTTP server on `127.0.0.1` instead of touching files directly. If the GUI is closed, the CLI takes a lockfile and writes directly. The GUI is always the source of truth for anything it's holding open.
 
-And this is Animo, now with AGI capabilities.
+## Licensing
 
-## How It Worked (For a While)
+The pricing model is simple: a one-time $49 license per machine, plus optional AI token packs and a paid hosted share page for publishing a finished video with a link. No subscription, no MRR chase.
 
-Every time a video was requested, the model used MCP to render it and then Animo to describe it.
+## Small details
 
-That was where the magic happened. The model could freely adjust the video as it learned from previous iterations.
+Slide decks got a presenter mode: fullscreen, a notes panel, drag-and-drop reordering, built for a teacher standing in front of a class rather than a developer at a desk. There's a template gallery for pre-built Manim scenes people can pick up and customize instead of starting from a blank prompt, which saves both time and AI tokens. And under the hood there's a bundled Python runtime plus a dependency checker that walks a new user through installing `python3`, `manim`, `ffmpeg`, and LaTeX without ever opening a terminal themselves, because the whole point of leaving the editor was to stop asking non-developers to behave like developers, and to stop making them wait on setup to get to the part that matters.
 
-But getting models to actually call MCP was a challenge. Smaller ones, like Cursor’s small model, did not call it at all. Debugging was difficult, but reading about Code Mode and how Cloudflare handles similar systems helped a lot.
+## What's next
 
-I have to rethink it one more time. Why do I need an MCP to begin with? Every model in this moment can run code, and can run commands. So why not create a system that directly uses the model through one single command line interface? That way we don't need to deal explaining the user we're working with an MCP.
+A VTK-based rendering backend is next on the roadmap, for scientific and engineering visualizations (3D meshes, volumetric data, simulation output) alongside the standard math animations Animo already does well. After that: Linux support, a web player for embedding generated animations outside the app, and an AI scene editor for refining a scene iteratively without regenerating it from scratch.
 
-### And Then I Removed MCP
-
-After all the experiments, I decided to remove MCP completely.
-
-Instead, I focused on building scripts and prompts that could be used directly by agents. Just like in Code Mode, I send a context sheet with all the typing needed to call scripts. This gives the model more awareness of what is going on.
-
-That change made everything simpler and faster. In the end, what I built started to look like something called Simple Language Open Protocol (SLOP), my own take on a more open and flexible system.
-
-## A better future
-
-This new version of Animo includes a video version history. A new folder called .agi is created inside the user interface.
-
-It stores extra copies of code and videos, displayed in a timeline so users never lose their progress.
-
-Everything can be shared online, similar to Lovable, and collaboration continues from there.
-
-## Affordability and Accessibility
-
-Animo is getting cheaper and more accessible. Today we have many options on where to code and create things like:
-
-- VSCode
-- Cursor
-- Windsurf
-- Kiro
-
-There are developers working on all of them for different reasons, one of them being affordability. For example, both VSCode and Kiro have very competitive pricing plans.
-
-So far, in Animo Platform, we have integrated powerful models like DeepSeek, Gemini, and Claude Sonnet 4 (my personal favorite for now). To make Animo sustainable, I created a flexible pricing plan so that we charge only for what you use in tokens.
-
-However, in VSCode, for instance, a token costs less than when purchased directly from Anthropic. So why not give the power back to your editor and YOU 🌴?, allowing us to charge only for the value we add on top of it, such as **templates**, **updated prompt files**, **web uploads**, and **AI image analysis**.
-
-And that's where Animo shines.
-
-### Design and UX
-
-On the design side, I built a longer onboarding process to better understand who the user is, what they are looking for, and what they want to achieve with Animo.
-
-For UX, I added a Top Users section showing weekly and monthly creators with the most shared videos.
-
-In short, Animo became more accessible, cheaper, and better. It can use any top model, including Grok, Anthropic, OpenAI, Gemini, or Cheetah.
-
-### Launch and Friends Release
-
-By October, it was time to launch. After a few last-minute fixes, I published the extension on both VSCode Marketplace and OpenVSX, introducing the Friends release.
-
-This stage let friends and early community members test everything, including onboarding, buttons, and pages, to find what needed improvement.
-
-## Design Philosophy
-
-Design was a big focus in this new version. My rule was to follow the same design system everywhere.
-
-For example, PlatKey, a Chrome extension, uses Platzi’s design style instead of Chrome’s. But for Animo, I wanted users to feel like it naturally belonged inside their editor.
-
-VSCode exposes its color schemes and design tokens, so I used them to make Animo feel native.
-
-## Small Details
-
-Users can share videos instantly with a link that includes a random happy cat image, just to make them smile when they open it.
-
-Something funny I found is that Cursor keeps the “Extensions” tab closed. I made a URI, kind of a deep link, that opens it directly. But during launch week, a bug caused the tab’s extensions to disappear randomly.
-
-To fix that, I created a small Command + Shift + P challenge. The user presses it once, and I guide them to do the same in Cursor or any VSCode-based editor to open the tab manually.
+Animo's story keeps folding back on itself: a web platform, then an editor extension, now this. Each rewrite came from admitting the last one carried too much weight, literally, in megabytes, and figuratively, in everything I made a teacher deal with just to get to a video. I don't know if this is the final shape. It's the first one that feels light enough to stop noticing.
