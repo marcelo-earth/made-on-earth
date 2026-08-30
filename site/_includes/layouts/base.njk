@@ -97,10 +97,10 @@
     <script type="text/javascript" src="/js/service-worker.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
     {% include "partials/services/keystone-login-scripts.njk" %}
-    <script type="module">
-      import { inject } from '@vercel/analytics';
-      inject();
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
+    <script defer src="/_vercel/insights/script.js"></script>
     {% if extra_js %}
       {% for item in extra_js %}
         <script type="text/javascript" src="{{item}}"></script>
