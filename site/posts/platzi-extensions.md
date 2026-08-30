@@ -1,5 +1,5 @@
 ---
-title: PlatKey
+title: Platzi Extensions
 date: "2021-12-30"
 description: "Creating a multiplatform browser extension for Platzi"
 tags:
@@ -10,17 +10,17 @@ tags:
   - platzi
 ---
 
-<img src="/platkey__cover.webp" alt="Landing page of Platkey" />
+<img src="/platziextensions__cover.webp" alt="Landing page of Platzi Extensions" />
 
 ## Introduction
 
 Some people like the experience of using web apps with keyboard shortcuts. <a href="https://platzi.com/" target="_blank">Platzi</a> is a platform that provides online courses, blogposts, live classes, and exams. The exams are taken in the browser, and the students can use the mouse to select the options. But now the students can use keyboard shortcuts to select the options faster.
 
-Introducing **PlatKey**.
+Introducing **Platzi Extensions**.
 
-### What is PlatKey?
+### What is Platzi Extensions?
 
-**PlatKey** is a browser extension that helps Platzi students to solve exams faster in Platzi. Also the browser extension provides new functionalities to improve the experience of taking classes in Platzi. And it is available in Chromium browsers and Safari.
+**Platzi Extensions** is a browser extension that helps Platzi students to solve exams faster in Platzi. Also the browser extension provides new functionalities to improve the experience of taking classes in Platzi. And it is available in Chromium browsers and Safari.
 
 ### Software Information
 
@@ -41,13 +41,13 @@ Introducing **PlatKey**.
 - Terminal-style design for Platzi UI
 - Multiplatform: available in Chromium-based browsers and Safari
 
-If you want to install the extension, you can do it from the <a href="https://platkey.dev/" target="_blank">PlatKey website</a>.
+If you want to install the extension, you can do it from the <a href="https://platkey.dev/" target="_blank">Platzi Extensions website</a>.
 
 It is open-source and under MIT License, <a href="https://github.com/360macky/platkey" target="_blank">you can review the code in GitHub</a>.
 
 ## Design Process
 
-The extension was made with an architecture that allows the extension to be used in different platforms. The first version of PlatKey was made for <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> (and Chromium browsers). And the third version brings support for <a href="https://www.apple.com/safari/" target="_blank">Safari</a> browser.
+The extension was made with an architecture that allows the extension to be used in different platforms. The first version of Platzi Extensions was made for <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> (and Chromium browsers). And the third version brings support for <a href="https://www.apple.com/safari/" target="_blank">Safari</a> browser.
 
 ## Development Process
 
@@ -71,9 +71,9 @@ Manifest V3 has features like service workers to load the user configuration, an
 
 The user interface was designed to be simple and intuitive. Inspired by control panel in <a href="https://support.apple.com/guide/iphone/use-and-customize-control-center-iph59095ec58/ios" target="_blank">iOS</a>.
 
-<img src="/platkey__comparison.webp" alt="Landing page of Platkey" />
+<img src="/platziextensions__comparison.webp" alt="Landing page of Platzi Extensions" />
 
-The extension has a popup window that contains only the configuration of the extension and links to the PlatKey website. The `popup.js` file is the JavaScript code whose scope is in this window.
+The extension has a popup window that contains only the configuration of the extension and links to the Platzi Extensions website. The `popup.js` file is the JavaScript code whose scope is in this window.
 
 ### Extension Workflow
 
@@ -94,7 +94,7 @@ And only is executed in the `"https://platzi.com/*"` url.
 
 ## Challenges
 
-Many challenges were faced during the development of PlatKey. Some of them were:
+Many challenges were faced during the development of Platzi Extensions. Some of them were:
 
 ### Building Spotlight search
 
@@ -122,7 +122,7 @@ This step is applied 500ms after the page is loaded. This delay is to ensure tha
 
 #### Situation
 
-<a href="https://www.apple.com/safari/" target="_blank">Safari</a> is the second most used browser in the world according to <a href="https://gs.statcounter.com/browser-market-share" target="_blank">StatCounter</a>. And Safari has a lot of users in Mac OS. So I decided to make a version of PlatKey for Safari.
+<a href="https://www.apple.com/safari/" target="_blank">Safari</a> is the second most used browser in the world according to <a href="https://gs.statcounter.com/browser-market-share" target="_blank">StatCounter</a>. And Safari has a lot of users in Mac OS. So I decided to make a version of Platzi Extensions for Safari.
 
 #### Solution
 
@@ -134,12 +134,12 @@ After that, I uploaded the extension to the App Store only for Mac. And the exte
 
 ## License
 
-The source code of PlatKey is distributed under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>.
+The source code of Platzi Extensions is distributed under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>.
 
 ## References
 
-- <a href="https://chrome.google.com/webstore/detail/PlatKey/bdjedpeffgjikndcihipemgdinpcmpcf?hl=es-419" target="_blank">PlatKey Extension page</a>
-- <a href="" target="_blank">PlatKey Website</a>
+- <a href="https://chrome.google.com/webstore/detail/PlatKey/bdjedpeffgjikndcihipemgdinpcmpcf?hl=es-419" target="_blank">Platzi Extensions page</a>
+- <a href="" target="_blank">Platzi Extensions website</a>
 - <a href="" target="_blank">Chrome API</a>
 - <a href="" target="_blank">Manifest V3</a>
 - <a href="" target="_blank">Chrome Web Store Review</a>
