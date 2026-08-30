@@ -78,6 +78,24 @@ Once the plugin was ready, it was time to integrate it into a NPM package. For b
 
 The package is published to NPM. And, it can be installed with `npm i graphem`. Or, using Yarn, `yarn add graphem`.
 
+### Installing with the Open MCT Build Tool
+
+<a href="https://github.com/nasa/openmct-build" target="_blank">`mct`</a> is NASA's command line tool for assembling a packaged Open MCT deployment. In <a href="https://github.com/360macky/graphem/pull/7" target="_blank">this pull request</a> I added support for it, so Graphem can be installed and configured as a plugin without hand wiring a `<script>` tag and an `openmct.install()` call.
+
+The work involved pointing the `main` field at the built UMD bundle, declaring the package as CommonJS so `mct` picks the right install shim, and adding an `openmct` optional peer dependency to record version compatibility. Graphem also ships a recipe file, so a full instance with the plugin already wired in can be built in one command.
+
+```bash
+mct build -i graphem-demo
+mct plugins add graphem -i graphem-demo
+mct plugins configure graphem --options '{"urn": "telemetry.example.com/graphql"}' -i graphem-demo
+```
+
+Or, straight from the bundled recipe:
+
+```bash
+mct build --recipe recipes/graphem.yaml -i graphem-demo
+```
+
 ### Publishing the plugin on NASA Open MCT Community Plugins
 
 An email was sent to the NASA Open MCT community to publish the plugin on the <a href="https://nasa.github.io/openmct/plugins/" target="_blank">Community Plugins</a> section.
