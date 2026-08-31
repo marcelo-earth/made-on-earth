@@ -15,7 +15,7 @@ tags:
 
 With much love ❤️ to all of you.
 
-Animo was born from an idea we started gathering back in 2023: being able to generate animations through programming, so that they become programmatic videos. With that spirit, we designed a desktop app that can render your animations with any artificial intelligence method, one that stays agnostic to any <a href="https://openrouter.ai/" target="_blank">OpenRouter</a> provider or language model, and that does it in a way that feels genuinely comfortable for whoever uses it, so you can work with it conveniently.
+Animo was born from an idea we started gathering back in 2023: being able to generate animations through programming, so that they become programmatic videos. That idea first shipped as <a href="/posts/generative-manim/">Generative Manim</a>, a web app for generating animations from text, and this desktop app is its evolution. With that spirit, we designed a desktop app that can render your animations with any artificial intelligence method, one that stays agnostic to any <a href="https://openrouter.ai/" target="_blank">OpenRouter</a> provider or language model, and that does it in a way that feels genuinely comfortable for whoever uses it, so you can work with it conveniently.
 
 To build this app we chose <a href="https://tauri.app/" target="_blank">Tauri</a> instead of <a href="https://www.electronjs.org/" target="_blank">Electron</a>. The reason: we wanted it to be incredibly efficient, both so it could be installed across many computers and so it could handle rendering all the video information, frame by frame for example.
 
@@ -41,7 +41,7 @@ The iterative scene editor that used to sit on this roadmap is already shipped: 
 
 Still ahead: a <a href="https://vtk.org/" target="_blank">VTK</a>-based rendering backend for scientific and engineering visualizations (3D meshes, volumetric data, simulation output) alongside the standard math animations Animo already does well, then Linux support and a web player for embedding generated animations outside the app.
 
-Animo's story keeps folding back on itself: a web platform, then an editor extension, now this. Each rewrite came from admitting the last one carried too much weight, literally, in megabytes, and figuratively, in everything I made a teacher deal with just to get to a video. I don't know if this is the final shape. It's the first one that feels light enough to stop noticing.
+Animo's story keeps folding back on itself: <a href="/posts/generative-manim/">a web platform</a>, then an editor extension, now this. Each rewrite came from admitting the last one carried too much weight, literally, in megabytes, and figuratively, in everything I made a teacher deal with just to get to a video. I don't know if this is the final shape. It's the first one that feels light enough to stop noticing.
 
 ## Features
 
@@ -57,6 +57,7 @@ Animo's story keeps folding back on itself: a web platform, then an editor exten
 
 ## References
 
+- <a href="/posts/generative-manim/">Generative Manim</a>
 - <a href="https://www.manim.community/" target="_blank">Manim Community</a>
 - <a href="https://github.com/3b1b/manim" target="_blank">3Blue1Brown's Manim</a>
 - <a href="https://tauri.app/" target="_blank">Tauri</a>
