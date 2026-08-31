@@ -25,6 +25,17 @@ The rendering algorithm is one of the most interesting pieces of the whole thing
 
 Animo is a cross-platform desktop app for generating educational videos with Manim.
 
+## Features
+
+- **Bring your own AI.** Animo stays agnostic to the provider: any OpenRouter provider or language model works, with your own API key.
+- **Local rendering.** Manim runs on your machine, so the video is yours and never leaves your hardware.
+- **Live render preview.** Frames appear in real time as Manim renders, animation by animation, instead of a spinner.
+- **Iterative scene editor.** Refine an existing scene in place, adjust one animation, timing, a color, a label, without regenerating it from scratch.
+- **Slide decks with presenter mode.** Fullscreen view, notes panel, and drag-and-drop reordering for teaching in front of a class.
+- **Template gallery.** Pre-built Manim scenes to pick up and customize instead of starting from a blank prompt.
+- **Zero-terminal setup.** A bundled Python runtime and a dependency checker walk new users through installing `python3`, `manim`, `ffmpeg`, and LaTeX.
+- **Lean by design.** Built on Tauri instead of Electron, so it stays small on disk and quick to start across many machines.
+
 ## Watching the render happen
 
 One detail I'm proud of: while Manim renders, you see frames appear in real time instead of staring at a spinner.
@@ -42,3 +53,11 @@ The iterative scene editor that used to sit on this roadmap is already shipped: 
 Still ahead: a VTK-based rendering backend for scientific and engineering visualizations (3D meshes, volumetric data, simulation output) alongside the standard math animations Animo already does well, then Linux support and a web player for embedding generated animations outside the app.
 
 Animo's story keeps folding back on itself: a web platform, then an editor extension, now this. Each rewrite came from admitting the last one carried too much weight, literally, in megabytes, and figuratively, in everything I made a teacher deal with just to get to a video. I don't know if this is the final shape. It's the first one that feels light enough to stop noticing.
+
+## References
+
+- <a href="https://www.manim.community/" target="_blank">Manim Community</a>
+- <a href="https://tauri.app/" target="_blank">Tauri</a>
+- <a href="https://ffmpeg.org/" target="_blank">FFmpeg</a>
+- <a href="https://openrouter.ai/" target="_blank">OpenRouter</a>
+- <a href="https://vtk.org/" target="_blank">VTK</a>
