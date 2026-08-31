@@ -25,12 +25,6 @@ The rendering algorithm is one of the most interesting pieces of the whole thing
 
 Animo is a cross-platform desktop app for generating educational videos with Manim.
 
-### Going native
-
-`animo-video` is a ground-up rewrite of the desktop app, not an incremental update, and most of that rewrite was chasing efficiency. It compiles down to a native binary now, using Tauri's own WebView instead of bundling a browser runtime: about 8MB on disk, startup that feels instant, and roughly 50 to 80MB of RAM at rest. WKWebView on macOS and WebView2 on Windows do the actual rendering, which also means the app looks and feels native to each OS instead of like a browser tab wearing a window frame. Every one of those numbers used to be an order of magnitude worse.
-
-The React frontend moved over largely intact: components, styles, most hooks all carried across close to as is. What changed underneath is everything that used to be message calls into a JavaScript backend process are now `invoke()` calls into Rust commands, and every service that used to run in that backend (chat storage, the Manim renderer, the AI orchestrator) now lives in `src-tauri/`, compiled and considerably faster for it.
-
 ## Watching the render happen
 
 One detail I'm proud of: while Manim renders, you see frames appear in real time instead of staring at a spinner.
