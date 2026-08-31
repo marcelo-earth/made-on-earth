@@ -35,12 +35,10 @@ The trick is understanding how Manim actually works. It doesn't render one file 
 
 Slide decks got a presenter mode: fullscreen, a notes panel, drag-and-drop reordering, built for a teacher standing in front of a class rather than a developer at a desk. There's a template gallery for pre-built Manim scenes people can pick up and customize instead of starting from a blank prompt, which saves both time and AI tokens. And under the hood there's a bundled Python runtime plus a dependency checker that walks a new user through installing `python3`, `manim`, `ffmpeg`, and LaTeX without ever opening a terminal themselves, because the whole point of leaving the editor was to stop asking non-developers to behave like developers, and to stop making them wait on setup to get to the part that matters.
 
-## Interactivity
-
-The iterative scene editor that used to sit on the roadmap is now part of the app. Instead of regenerating a scene from scratch every time you want a change, you can point at what's already there and refine it: adjust a single animation, nudge the timing, swap a color, rewrite one label, and Animo edits the existing Manim scene in place rather than starting over. It keeps the parts you already liked and spends AI tokens only on the change you asked for.
-
 ## What's next
 
-A VTK-based rendering backend is next on the roadmap, for scientific and engineering visualizations (3D meshes, volumetric data, simulation output) alongside the standard math animations Animo already does well. After that: Linux support, and a web player for embedding generated animations outside the app.
+The iterative scene editor that used to sit on this roadmap is already shipped: instead of regenerating a scene from scratch every time you want a change, you can point at what's already there and refine it, adjust a single animation, nudge the timing, swap a color, rewrite one label, and Animo edits the existing Manim scene in place rather than starting over, spending AI tokens only on the change you asked for.
+
+Still ahead: a VTK-based rendering backend for scientific and engineering visualizations (3D meshes, volumetric data, simulation output) alongside the standard math animations Animo already does well, then Linux support and a web player for embedding generated animations outside the app.
 
 Animo's story keeps folding back on itself: a web platform, then an editor extension, now this. Each rewrite came from admitting the last one carried too much weight, literally, in megabytes, and figuratively, in everything I made a teacher deal with just to get to a video. I don't know if this is the final shape. It's the first one that feels light enough to stop noticing.
