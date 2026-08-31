@@ -87,9 +87,9 @@ DailyFast is a <a href="https://nextjs.org/" target="_blank">Next.js</a> 16 app 
 
 The scans and the report run on Azure OpenAI through the AI SDK, using a small, cheap model. This is a case where the small model is the right call rather than a compromise. The hard reasoning already happened in the deterministic checks; what's left is writing one clear paragraph, which a nano model does well, at a cost per user per month that rounds to nothing. A product that runs every day for every project has to have a per-run cost close to zero or the pricing stops working.
 
-### Forked from Experiwall
+### One database, two products
 
-DailyFast started on 10 May 2026 as a fork of Experiwall, my A/B experimentation platform, and the two still share one Supabase project. Auth and the common tables live in `public`. Everything DailyFast-specific lives in a `monitoring` schema, and everything Experiwall-specific in `experiments`.
+DailyFast started in May 2026, and it shares a Supabase project with another product of mine. Auth and the tables both need live in `public`. Everything specific to DailyFast lives in its own `monitoring` schema, and the other product's tables live in a schema of their own.
 
 Sharing a database between two products has one rule that has to hold: any migration touching `public` gets mirrored in both repos in the same session, and migration filenames use a global timestamp prefix rather than a sequential number, so two repos can't collide on the same number. It's a small discipline that keeps a shared foundation from becoming the reason you stop shipping in either product.
 
