@@ -47,34 +47,6 @@ But when I noticed that many people started using Generative Manim more and more
 
 Like most of my projects I use [Next.js](https://nextjs.org/) for the platform, and [Flask](https://flask.palletsprojects.com/) for the Animo Server Processor (ASP), based on Generative Manim models.
 
-### Animo Platform
-
-The first thing I started to develop was a video editor. I got inspiration by looking at the Remotion player.
-
-After two weeks of working on it, I realized that even with a cool timeline, people most likely wouldn't use it if it didn't support multiple scenes.
-
-After another eight weeks (yes, this was one of those goals that are hard to achieve), I had a multi-scene video editor. One that also allows replace scenes when selected.
-
-Then, I extracted the code generator to a separate service and integrated it with the video editor.
-
-To handle the conversation system I use [Vercel AI SDK](https://www.npmjs.com/package/ai).
-
-In order to represent the code I use [React Syntax Highlighter](https://www.npmjs.com/package/react-syntax-highlighter) to highlight the code.
-
-But as I said, I wanted to give control to the user, and so the user can change the code of the scene. We do this by providing an integrated editor built with [Monaco Editor](https://www.npmjs.com/package/monaco-editor).
-
-I created a scene structure that contains both the video and the code.
-
-Then, I started to work on the chat interface, drawing inspiration from the chat interface of the OpenAI Codex.
-
-### Animo Server Processor
-
-Building the Animo Server Processor was the most challenging part of the project.
-
-Of course, if I'm working with videos I use [FFMPEG](https://ffmpeg.org/) to handle things like exporting the video merging multiple scenes in one.
-
-For the video rendering, this is really simple. I just use the [Manim](https://www.manim.community/) library to render the video. But before doing that, the processor checks the format asked by the user (like for YouTube, TikTok or Instagram), then the video is rendered and uploaded to the cloud.
-
 ### Comparisons
 
 I discovered two amazing tools: MotionShark and GateKeep. Both focus on helping students comprehend physics and mathematics concepts with animations. Animo, however, is more focused on the creation of animations through chat. It’s designed for teachers to create animations for their classes or for people making videos.
