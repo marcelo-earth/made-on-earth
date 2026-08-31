@@ -10,7 +10,7 @@ tags:
   - education
 ---
 
-<img src="/advibesor__cover.png" alt="Landing page of Advibesor" />
+<img src="/advibesor__cover.webp" alt="Landing page of Advibesor" />
 
 ## Introduction
 
