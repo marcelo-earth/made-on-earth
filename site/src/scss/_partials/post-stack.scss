@@ -30,3 +30,15 @@ $l-stack-bp: 600px;
   font-size: $SCALE--1;
   color: var(--COLOR_DARK);
 }
+
+.post-stack-item h2 a,
+.post-stack-item h3 a {
+  color: var(--THEME_UNDERLINE);
+  text-decoration: underline;
+  text-decoration-color: var(--THEME_UNDERLINE);
+}
+
+.post-stack-item h2 a:hover,
+.post-stack-item h3 a:hover {
+  opacity: 0.8;
+}
