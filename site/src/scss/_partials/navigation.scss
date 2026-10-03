@@ -19,7 +19,14 @@
 .l-navigation a {
   text-decoration: underline;
   text-decoration-color: var(--THEME_UNDERLINE);
+  color: var(--THEME_UNDERLINE);
   font-size: 0.9rem;
+}
+
+.l-navigation a[aria-current="page"] {
+  text-decoration: none;
+  color: var(--THEME_COLOR);
+  font-weight: 500;
 }
 
 @media (min-width: 800px) {
@@ -29,7 +36,7 @@
 }
 
 .l-navigation a:hover {
-  color: var(--THEME_HOVER, black);
+  opacity: 0.8;
 }
 
 .navigation {
