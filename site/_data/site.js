@@ -2,7 +2,7 @@ module.exports = {
   name: "Made on Earth",
   shortDesc:
     "Every product has a process with challenges. Here I share the stories behind each one.",
-  url: "https://made.marcelo.earth/",
+  url: "https://made.marcelo.earth",
   authorEmail: "hello@marceloarias.com",
   authorHandle: "@marcelo_earth",
   authorName: "Marcelo Arias",
