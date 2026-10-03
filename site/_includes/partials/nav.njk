@@ -12,7 +12,7 @@
           {% set externalAttribute = ' rel="external" target="_blank"' %}
         {% endif %}
 
-        {% if page.url == item.url %}
+        {% if page.url == item.url or (item.url != '/' and not item.external and page.url.startsWith(item.url)) %}
           {% set currentAttribute = ' aria-current="page"' %}
         {% endif %}
 
