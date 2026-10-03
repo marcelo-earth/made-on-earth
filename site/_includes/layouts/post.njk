@@ -26,7 +26,7 @@
   "author": {
     "@type": "Person",
     "name": "{{ authorName }}",
-    "url": "https://marceloarias.com"
+    "url": "https://marcelo.earth"
   },
   "publisher": {
     "@type": "Organization",
@@ -34,6 +34,10 @@
     "url": "{{ site.url }}"
   },
   "datePublished": "{{ date | w3DateFilter }}",
+  "dateModified": "{{ date | w3DateFilter }}",
+  "inLanguage": "en",
+  "image": "{{ site.url }}{{ site.socialImage }}",
+  "keywords": "{{ tags | join(', ') }}",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "{{ site.url }}{{ page.url }}"
