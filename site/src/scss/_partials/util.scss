@@ -11,12 +11,19 @@
 
 .skip-content:focus {
   top: 0;
+  left: 0;
+  z-index: 50;
+  padding: 1rem;
+  color: var(--THEME_BACKGROUND);
+  background: var(--THEME_COLOR);
+  text-decoration: none;
+  outline: 2px solid var(--THEME_UNDERLINE);
+  outline-offset: 2px;
   border: 0;
   clip: unset;
   height: auto;
   margin: 0;
   overflow: visible;
-  padding: 0;
   width: auto;
   white-space: wrap;
 }
@@ -36,46 +43,6 @@
 
 .theme-color {
   color: var(--THEME_COLOR, black);
-}
-
-.hero {
-  border-radius: 1.6rem;
-  background-size: cover;
-}
-
-.hero {
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .hero {
-    animation-name: move-background;
-    animation-duration: 60s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease;
-  }
-}
-
-@media (max-width: 800px) {
-  .hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0;
-    border: 0;
-    min-height: 55vh;
-  }
-}
-
-@keyframes move-background {
-  0% {
-    background-position: center;
-  }
-  50% {
-    background-position: top;
-  }
-  100% {
-    background-position: center;
-  }
 }
 
 .theme-hightlight {
