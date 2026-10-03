@@ -10,6 +10,3 @@ socialImage: ""
   Case Studies of Products
 </p>
 
-<p class="l-second">
-  Marcelo Arias
-</p>
