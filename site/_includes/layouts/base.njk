@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Inter:wght@300;500;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
 />
 
@@ -26,7 +26,8 @@
           --THEME_COLOR: {{site.theme.primary.text}};
           --THEME_HIGHLIGHT: {{site.theme.primary.highlight}};
           --THEME_HOVER: #404040;
-          --THEME_UNDERLINE: #C8D5F7;
+          --THEME_UNDERLINE: #2563EB;
+          --THEME_RULE: #C8D5F7;
           --COLOR_DARK: #333;
           --COLOR_LIGHTER: #eaeaea;
           --COLOR_MID: #767676;
@@ -38,23 +39,11 @@
             --THEME_COLOR: #fff;
             --THEME_HIGHLIGHT: #fff;
             --THEME_HOVER: #e8e8e8;
+            --THEME_UNDERLINE: #C8D5F7;
+            --THEME_RULE: #404040;
             --COLOR_DARK: #dedede;
             --COLOR_LIGHTER: #000;
             --COLOR_MID: #c1c1c1;
-          }
-        }
-
-        .theme-secondary {
-          --THEME_BACKGROUND: {{site.theme.secondary.background}};
-          --THEME_COLOR: #404040;
-          --THEME_HIGHLIGHT: #000;
-        }
-
-        @media (prefers-color-scheme: dark) {
-          .theme-secondary {
-            --THEME_BACKGROUND: {{site.theme.secondary.background}};
-            --THEME_COLOR: #e8e8e8;
-            --THEME_HIGHLIGHT: #fff;
           }
         }
       </style>
@@ -86,9 +75,6 @@
         </div>
       </main>
     </div>
-    {% block foot %}
-      {% include "partials/global/site-foot.njk" %}
-    {% endblock %}
     <script type="text/javascript" src="/js/service-worker.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
     {% include "partials/services/keystone-login-scripts.njk" %}
