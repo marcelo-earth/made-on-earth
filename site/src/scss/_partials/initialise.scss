@@ -58,6 +58,11 @@ a {
   text-decoration-color: var(--THEME_UNDERLINE, black);
 }
 
+a:focus-visible {
+  outline: 2px solid var(--THEME_UNDERLINE, #2563EB);
+  outline-offset: 2px;
+}
+
 a:focus,
 a:active {
   color: var(--THEME_HOVER/20, black);
