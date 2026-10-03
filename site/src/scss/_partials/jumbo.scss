@@ -1,28 +1,24 @@
 .l-jumbo {
-  padding: 6rem 0;
+  padding: 1.5rem 0 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
+.l-jumbo h1 {
+  font-size: $SCALE-3;
+  letter-spacing: -0.025em;
+  color: var(--THEME_COLOR);
+}
+
 @media (max-width: 800px) {
-  .l-jumbo {
-    text-align: center;
-    padding: 0rem 1rem;
-  }
   .l-jumbo h1 {
-    line-height: 1;
-    font-size: $SCALE-4-5;
+    font-size: $SCALE-2;
   }
   .l-navigation {
     justify-content: space-between;
   }
-}
-
-.l-jumbo h1 {
-  letter-spacing: -0.15rem;
-  color: var(--THEME_HIGHLIGHT);
 }
 
 .l-jumbo > * + * {
