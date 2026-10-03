@@ -43,3 +43,8 @@ $bp-site-head: 600px;
     margin: 0;
   }
 }
+
+.site-rule {
+  border: 0;
+  border-top: 1px solid var(--THEME_RULE, #C8D5F7);
+}
